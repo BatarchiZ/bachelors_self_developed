@@ -9,7 +9,7 @@ from stable_baselines3.common.callbacks import CheckpointCallback
 from class_grasp_gym_discrete import GraspEnvDiscrete 
 from class_save_training import SaveMetricsCallback
 
-CHECKPOINT_PATH = "/home/is/catkin_ws/src/z_models/dqn_checkpoint_3000_steps.zip"  
+CHECKPOINT_PATH = "/home/is/catkin_ws/src/_o_output/dqn_checkpoint_3000_steps.zip"  
 
 if __name__ == "__main__":
     try:
@@ -22,16 +22,16 @@ if __name__ == "__main__":
         metrics_callback = SaveMetricsCallback(log_dir="/home/is/catkin_ws/src/____logs/")
         checkpoint_callback = CheckpointCallback(
             save_freq=120,               # Save every 100 steps
-            save_path='./z_models/',     # Save directory
+            save_path='./models/',     # Save directory
             name_prefix='dqn_checkpoint' # Checkpoint file prefix
         )
         start_time = time.time()
         model.learn(total_timesteps=3000, callback=[metrics_callback, checkpoint_callback])
         end_time = time.time()
-        model.save("z_models/dqn_testing_160225.zip")
+        model.save("models/dqn_testing_160225.zip")
         env.close()
         kill()
 
     except KeyboardInterrupt:
-        model.save("z_models/dqn_interrupted.zip")
+        model.save("models/dqn_interrupted.zip")
         kill()

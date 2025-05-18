@@ -6,7 +6,7 @@ import os
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 
-OUTPUT_DIR = "/home/is/catkin_ws/src/z_output"
+OUTPUT_DIR = "/home/is/catkin_ws/src/_o_output"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 class CameraSubscriber:

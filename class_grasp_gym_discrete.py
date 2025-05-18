@@ -21,7 +21,7 @@ def compute_angle_to_object(xg, yg, xo, yo):
 def time_penalty(steps, reward):
     return reward * np.log(np.sqrt(0.75 * steps))
 
-def gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"):
+def gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg"):
     img = cv2.imread(path)
     top_crop = 0
     bottom_crop = 270
@@ -82,18 +82,18 @@ class GraspEnvDiscrete(gym.Env):
         self.angle = 0
         self.steps = 0
         self.min_distance = 2 
-        return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg")
+        return gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg")
 
     def _my_reset(self):
         self._pre_reset()
         move_cobot(self.position[0], self.position[1], 0.7)
-        return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg")
+        return gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg")
 
     def step(self, action):
         if self.steps == 59:
             reward = -40
             done = True
-            return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"), reward, done, {}
+            return gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg"), reward, done, {}
             
         self.steps += 1
         delta_x, delta_y = 0, 0
@@ -114,7 +114,7 @@ class GraspEnvDiscrete(gym.Env):
 
             reward = -5
             done = False
-            return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"), reward, done, {}
+            return gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg"), reward, done, {}
         
         self.position[0] += delta_x
         self.position[1] += delta_y
@@ -132,7 +132,7 @@ class GraspEnvDiscrete(gym.Env):
             reward = -35
             done = True
             self.min_distance = 2
-            return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"), reward, done, {}
+            return gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg"), reward, done, {}
         
 
         distance = get_euclidean_distance()
@@ -143,7 +143,7 @@ class GraspEnvDiscrete(gym.Env):
             reward = 40
             done = True
             self.min_distance = 2
-            return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"), reward, done, {}
+            return gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg"), reward, done, {}
         else:
             gripper_length = (0.1**2 + 0.1**2)**0.5 + 0.01
             gripper_length_adj = (0.1**2 + 0.1**2)**0.5 + 0.06
@@ -163,7 +163,7 @@ class GraspEnvDiscrete(gym.Env):
         if distance < 0.2: 
             control_gripper(0.0)
         done = False
-        return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"), reward, done, {}
+        return gather_image(path="/home/is/catkin_ws/src/_o_output/recent_frame.jpg"), reward, done, {}
 
     def check_grasp_success(self, x, y, z, distance):
         error = get_gripper_disposition()
