@@ -1,13 +1,13 @@
 import time
 import os
-from kill import kill
+from terminate import kill
 import gymnasium as gym
 from stable_baselines3 import DQN
 from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack
 from stable_baselines3.dqn import CnnPolicy
 from stable_baselines3.common.callbacks import CheckpointCallback
-from __class_grasp_gym_discrete import GraspEnvDiscrete 
-from _class_save_training import SaveMetricsCallback
+from class_grasp_gym_discrete import GraspEnvDiscrete 
+from class_save_training import SaveMetricsCallback
 
 CHECKPOINT_PATH = "/home/is/catkin_ws/src/z_models/dqn_checkpoint_3000_steps.zip"  
 

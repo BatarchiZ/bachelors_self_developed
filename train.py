@@ -1,12 +1,12 @@
-from kill import kill
+from terminate import kill
 import gymnasium as gym
 from stable_baselines3 import PPO, SAC, A2C
 from stable_baselines3.common.vec_env import DummyVecEnv
-from __class_gym_continuous import GraspEnv 
+from class_gym_continuous import GraspEnv 
 import pandas as pd
 import time
 from stable_baselines3 import A2C
-from _class_save_training import SaveMetricsCallback
+from class_save_training import SaveMetricsCallback
 
 
 if __name__ == "__main__":

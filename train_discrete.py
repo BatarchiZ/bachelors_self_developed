@@ -1,12 +1,12 @@
 import time
-from kill import kill
+from terminate import kill
 import gymnasium as gym
 from stable_baselines3 import PPO, SAC, A2C, DQN
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.callbacks import CheckpointCallback  # Import CheckpointCallback
 from __class_gym_discrete import GraspEnvDiscrete 
 import pandas as pd
-from _class_save_training import SaveMetricsCallback
+from class_save_training import SaveMetricsCallback
 
 from stable_baselines3 import DQN
 from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack

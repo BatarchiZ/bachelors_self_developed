@@ -8,7 +8,7 @@ import time
 from main_copy import kill_all_ros_processes, start_world
 from cobot_controls import move_cobot, control_gripper
 from service_server_control import *
-from kill import kill
+from terminate import kill
 import cv2
 import math 
 
@@ -28,7 +28,7 @@ def gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"):
     left_crop = 200
     right_crop = 200
 
-    height, width, _ = img.shape 
+    height, width, _ = img.shape
 
     img = img[top_crop:height - bottom_crop, left_crop:width - right_crop, :]
     mask = cv2.inRange(img, (50, 0, 0), (255, 60, 60))
@@ -57,7 +57,7 @@ class GraspEnvDiscrete(gym.Env):
         self.high = np.array([1.06, 0.51])
         self.observation_space = gym.spaces.Box(low=0, high=255, shape=(84, 110, 1), dtype=np.uint8)
 
-        self.position = np.array([0.0, 0.0])
+        self.position = np.array([0.0, 0.0]) 
 
         self.min_distance = 2  
         self.steps = 0
@@ -158,9 +158,9 @@ class GraspEnvDiscrete(gym.Env):
                 self.min_distance = distance
             if (gripper_length_adj > distance) and angle != -90:
                 reward -= 5
-                
+            
 
-        if distance < 0.2:
+        if distance < 0.2: 
             control_gripper(0.0)
         done = False
         return gather_image(path="/home/is/catkin_ws/src/z_output/recent_frame.jpg"), reward, done, {}
@@ -168,6 +168,8 @@ class GraspEnvDiscrete(gym.Env):
     def check_grasp_success(self, x, y, z, distance):
         error = get_gripper_disposition()
         threshold_error = 0.0075
+
+
         if (error >= threshold_error) and distance < 0.2:
             move_cobot(x, y, z + 0.1)
             obj_x2, obj_y2, obj_z2 = get_object_position()

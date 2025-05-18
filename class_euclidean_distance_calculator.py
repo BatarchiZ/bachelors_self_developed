@@ -4,7 +4,7 @@ import rospy
 import tf
 import numpy as np
 from std_srvs.srv import Trigger, TriggerResponse
-from __class_gym_continuous import get_object_position
+from class_gym_continuous import get_object_position
 
 OBJECT_SIZE_X = 0.02  
 OBJECT_SIZE_Y = 0.02  
